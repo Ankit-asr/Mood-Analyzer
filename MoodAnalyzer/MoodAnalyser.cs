@@ -8,10 +8,10 @@ namespace MoodAnalyzer
     {
         public string AnalyseMood(string message)
         {
-            if (message.Contains("happy") || message.Contains("Happy"))
-                return "Happy";
+            if (message.Contains("Sad") || message.Contains("sad"))
+                    return "Sad";
             else
-                return "Sad";
+                return "Happy";
         }
 
     }
