@@ -9,7 +9,7 @@ namespace MoodAnalyzer
         string message;
         public MoodAnalyser()
         {
-            this.message = "I am in Sad Mood";
+            this.message = "I am in Happy Mood";
         }
         public MoodAnalyser(string message)
         {
