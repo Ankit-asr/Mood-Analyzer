@@ -6,13 +6,21 @@ namespace MoodAnalyzer
 {
     public class MoodAnalyser
     {
-        public string AnalyseMood(string message)
+        string message;
+        public MoodAnalyser()
         {
-            if (message.Contains("Sad") || message.Contains("sad"))
-                    return "Sad";
+            this.message = "I am in Sad Mood";
+        }
+        public MoodAnalyser(string message)
+        {
+            this.message = message;
+        }
+        public string AnalyseMood()
+        {
+            if (message.Contains("Sad"))
+                return "Sad";
             else
                 return "Happy";
         }
-
     }
 }
