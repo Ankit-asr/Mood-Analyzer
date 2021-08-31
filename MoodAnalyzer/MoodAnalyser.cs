@@ -9,32 +9,39 @@ namespace MoodAnalyzer
         public string message;
         public MoodAnalyser()
         {
-            this.message = "I am in Happy Mood";
 
+        }
+        public MoodAnalyser(string message)
+        {
+            this.message = message;
         }
         public string AnalyseMood()
         {
-            if (message.Contains("Sad"))
-                try
+            try
+            {
+                if (message == null)
+                {
+                    throw new Exception();
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "mood is null");
+                }
+                if (message.Length == 0)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MOOD, "mood is empty");
+                }
+                message = this.message.ToLower();
+                if (message.Contains("sad"))
                 {
                     return "Sad";
-                    if (message == null)
-                    {
-                        throw new Exception();
-                    }
-                    message = this.message.ToLower();
-                    if (message.Contains("sad"))
-                    {
-                        return "Sad";
-                    }
-                    else
-                        return "Happy";
                 }
-                catch (Exception)
-                {
+                else
                     return "Happy";
-                }
-            return "Happy";
+            }
+            catch (MoodAnalyserException e)
+            {
+                Console.WriteLine(e.Message);
+                return "Happy";
+            }
+
         }
     }
 }
