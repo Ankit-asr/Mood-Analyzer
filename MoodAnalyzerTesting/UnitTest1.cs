@@ -60,5 +60,15 @@ namespace MoodAnalyserTesting
             Assert.AreEqual(expected, actual);
 
         }
+        /// <summary>
+        /// TC-4.3 Throw No such method  exception.
+        /// </summary>
+        [TestMethod]
+        public void GivenConstructorNameImproper_ShouldReturnMoodAnalysisException()
+        {
+            string expected = "No such method";
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "Mood");
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
