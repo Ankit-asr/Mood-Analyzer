@@ -1,27 +1,32 @@
-﻿using System;
+﻿using MoodAnalyser;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MoodAnalyzer
+namespace MoodAnalyserProblem
 {
-    public class MoodAnalyser
+    public class MoodAnalysers
     {
         public string message;
-        public MoodAnalyser()
+        public MoodAnalysers()
         {
 
         }
-        public MoodAnalyser(string message)
+        public MoodAnalysers(string message)
         {
             this.message = message;
         }
-        public string AnalyseMood()
+        /// <summary>
+        /// method return Sad or Happy or if message is empty or null then throw specific exception
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public string AnalyserMood()
         {
             try
             {
                 if (message == null)
                 {
-                    throw new Exception();
                     throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "mood is null");
                 }
                 if (message.Length == 0)
@@ -38,8 +43,7 @@ namespace MoodAnalyzer
             }
             catch (MoodAnalyserException e)
             {
-                Console.WriteLine(e.Message);
-                return "Happy";
+                return e.type.ToString();
             }
 
         }
