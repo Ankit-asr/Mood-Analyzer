@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace MoodAnalyserProblem
 {
     public class MoodAnalysers
@@ -43,6 +42,7 @@ namespace MoodAnalyserProblem
             }
             catch (MoodAnalyserException e)
             {
+                return e.Message;
                 return e.type.ToString();
             }
 

@@ -28,18 +28,15 @@ namespace MoodAnalyserTesting
         }
         [TestMethod]
         ///<summary>
-        ///Test 2.1 If message is null throw exception and return Happy
-        ///<summary>
         ///Test 3.1 message should return mood is null or mood is empty
+        ///Test 3.2 message should return Exception type is null or mood is empty
         /// </summary>
         public void GivenNullMessage_WhenAnalyseShouldReturnException()
         {
-            MoodAnalysers moodAnalyser = new MoodAnalysers();
-            string actual = moodAnalyser.AnalyserMood();
-            Assert.AreEqual("Happy", actual);
             MoodAnalysers moodAnalysers = new MoodAnalysers();
             string actual = moodAnalysers.AnalyserMood();
             Assert.AreEqual("mood is null", actual);
+            Assert.AreEqual("NULL_MOOD", actual);
         }
     }
 }
