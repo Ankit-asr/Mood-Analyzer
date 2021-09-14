@@ -1,5 +1,5 @@
 ﻿using System;
-
+using MoodAnalyser;
 namespace MoodAnalyserProblem
 {
     class Program

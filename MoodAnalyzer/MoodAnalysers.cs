@@ -6,6 +6,7 @@ namespace MoodAnalyserProblem
 {
     public class MoodAnalysers
     {
+        //Variables
         public string message;
         public MoodAnalysers()
         {
@@ -42,7 +43,6 @@ namespace MoodAnalyserProblem
             }
             catch (MoodAnalyserException e)
             {
-                return e.Message;
                 return e.type.ToString();
             }
 
