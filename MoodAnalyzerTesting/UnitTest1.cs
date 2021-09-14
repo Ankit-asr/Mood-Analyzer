@@ -109,5 +109,15 @@ namespace MoodAnalyserTesting
                 Assert.AreEqual(expected, e.Message);
             }
         }
+        [TestMethod]
+        /// <summary>
+        /// TC-7.1-Change mood dynamically.
+        /// </summary>
+        public void GivenSetMoodDynamically_ShouldReturnHappy()
+        {
+            string expected = "Happy";
+            string actual = MoodAnalyserReflector.SetFieldDynamic("Happy", "message");
+            expected.Equals(actual);
+        }
     }
 }
