@@ -2,7 +2,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyser;
 using MoodAnalyserProblem;
 using System;
-
 namespace MoodAnalyserTesting
 {
     [TestClass]
@@ -45,69 +44,70 @@ namespace MoodAnalyserTesting
         public void GivenMoodAnalyserReflection_ShouldReturnObject()
         {
             object expected = new MoodAnalysers();
-            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers");
+            object actual = MoodAnalyser.MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers");
             expected.Equals(actual);
         }
+        [TestMethod]
         /// <summary>
         /// TC-4.2 Throw No such class found exception.
         /// </summary>
-        [TestMethod]
         public void GivenClassNameImproper_ShouldReturnMoodAnalysisException()
         {
             string expected = "No such class found";
-            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyse", "Mood");
+            object actual = MoodAnalyser.MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyse", "Mood");
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
         /// <summary>
         /// TC-4.3 Throw No such method  exception.
         /// </summary>
-        [TestMethod]
         public void GivenConstructorNameImproper_ShouldReturnMoodAnalysisException()
         {
             string expected = "No such method";
-            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "Mood");
+            object actual = MoodAnalyser.MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "Mood");
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
         /// <summary>
         /// Tast Case -5.1 Returns the mood analyser object with parameterized constructor.
         /// </summary>
-        [TestMethod]
         public void GivenParameterizedConstructor_ShouldReturnObject()
         {
             object expected = new MoodAnalysers("I am Parameter constructor");
-            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers", "I am Parameter constructor");
+            object actual = MoodAnalyser.MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers", "I am Parameter constructor");
             expected.Equals(actual);
         }
+        [TestMethod]
         /// <summary>
         /// Test Case -5.2 should throw No such class found exception with parameterized constructor.
         /// </summary>
-        [TestMethod]
         public void GivenClassNameImproperParameterizedConstructor_ShouldReturnMoodAnalysisException()
         {
             string expected = "No such class found";
             try
             {
-                object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
+                object actual = MoodAnalyser.MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyser.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
             }
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(expected, e.Message);
             }
         }
+        [TestMethod]
         /// <summary>
         /// TC-5.3 should throw NO_SUCH_CONSTRUCTOR exception with parameterized constructor.
         /// </summary>
-        [TestMethod]
         public void GivenImproperParameterizedConstructorName_ShouldReturnMoodAnalysisException()
         {
             string expected = "No such method";
             try
             {
-                object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
+                object actual = MoodAnalyser.MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
             }
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(expected, e.Message);
             }
         }
-    }   
+    }
+}
