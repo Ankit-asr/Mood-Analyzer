@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoodAnalyser;
 using MoodAnalyserProblem;
 using System;
 namespace MoodAnalyserTesting
@@ -28,15 +29,36 @@ namespace MoodAnalyserTesting
         }
         [TestMethod]
         ///<summary>
-        ///Test 3.1 message should return mood is null or mood is empty
         ///Test 3.2 message should return Exception type is null or mood is empty
         /// </summary>
         public void GivenNullMessage_WhenAnalyseShouldReturnException()
         {
             MoodAnalysers moodAnalysers = new MoodAnalysers();
             string actual = moodAnalysers.AnalyserMood();
-            Assert.AreEqual("mood is null", actual);
             Assert.AreEqual("NULL_MOOD", actual);
+        }
+        [TestMethod]
+        /// <summary>
+        /// TC-4.1 Returns the MoodAnalysers object
+        /// </summary>
+        public void GivenMoodAnalyserReflection_ShouldReturnObject()
+        {
+            object expected = new MoodAnalysers();
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers");
+            expected.Equals(actual);
+        }
+        /// <summary>
+        /// TC-4.2 Throw No such class found exception.
+        /// </summary>
+        [TestMethod]
+        public void GivenClassNameImproper_ShouldReturnMoodAnalysisException()
+        {
+            string expected = "No such class found";
+
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyse", "Mood");
+
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }
